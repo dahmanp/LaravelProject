@@ -5,6 +5,7 @@
 
     <form method="POST" action="/jobs/{{ $job->id }}">
         @csrf
+        @method('PATCH')
 
         <div class="space-y-12">
             <div class="border-b border-black/10 pb-12">
@@ -64,6 +65,7 @@
         </div>
     </form>
     <form method="POST" action="/jobs/{{ $job->id }}" id="delete-form" class="hidden">
+        @csrf
         @method('DELETE')
     </form>
 </x-layout>
