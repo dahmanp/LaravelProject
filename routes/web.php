@@ -3,38 +3,34 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 use Illuminate\Http\Request;
+use App\Http\Controllers\JobController;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::view('/', 'home');
+Route::view('/contact', 'contact');
 
-Route::get('/jobs', function (Request $request) {
-    /*$jobs = Job::with('employer')->get();*/
-    $sort = $request->query('sort', 'id');
+/*Route::controller(JobController::class)->group(function () {
+//Index
+    Route::get('/jobs', 'index');
 
-    $jobs = Job::with('employer')
-        ->when($sort === 'title', function ($query) {
-            $query->orderBy('title', 'asc');
-        })
-        ->when($sort !== 'title', function ($query) use ($sort) {
-            $query->orderBy($sort);
-        })
-        ->when(!in_array($sort, ['title', 'salary']), function ($query) use ($sort) {
-            $query->orderBy($sort);
-        })
-        ->get();
+//Create
+    Route::get('/jobs/create', 'create');
 
-    return view('jobs', [
-        'jobs' => $jobs
-    ]);
-});
+//Show
+    Route::get('/jobs/{job}', 'show');
 
-Route::get('/jobs/{id}', function ($id) {
-    $job = Job::find($id);
+//Store
+    Route::post('/jobs', 'store');
 
-    return view('job', ['job' => $job]);
-});
+//Edit
+    Route::get('/jobs/{job}/edit', 'edit');
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+//Update
+//I TRIED USING PATCH BUT IT KEPT GIVING ME ERRORS - this seems to work
+    Route::post('/jobs/{job}', 'update');
+
+//Destroy
+//THIS DOESN'T SEEM TO WORK EITHER - gives me a page expired page - 419
+    Route::delete('/jobs/{job}', 'destroy');
+});*/
+
+Route::resource('jobs', JobController::class);

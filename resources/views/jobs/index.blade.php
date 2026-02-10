@@ -3,7 +3,7 @@
         Job Listings
     </x-slot:heading>
 
-    <form method="GET" action="{{ url('/jobs') }}">
+    <!--<form method="GET" action="{{ url('/jobs') }}">
         <label for="sort">Sort By:</label>
 
         <select name="sort" id="sort" onchange="this.form.submit()">
@@ -12,14 +12,14 @@
             </option>
 
             <option value="title" {{ request('sort') === 'title' ? 'selected' : '' }}>
-                Job Title (A–Z)
+                Job Title (A-Z)
             </option>
 
             <option value="salary" {{ request('sort') === 'salary' ? 'selected' : '' }}>
                 Salary (Lowest to Highest)
             </option>
         </select>
-    </form>
+    </form>-->
 
     <div class="space-y-4">
         @foreach ($jobs as $job)
@@ -32,4 +32,5 @@
             </a>
         @endforeach
     </div>
+        {{ $jobs->links() }}
 </x-layout>
