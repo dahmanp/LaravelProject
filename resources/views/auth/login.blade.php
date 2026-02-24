@@ -23,7 +23,6 @@
                         <x-form-label for="password">Password</x-form-label>
                         <div class="mt-2">
                             <x-form-input id="password" name="password" required type="password"></x-form-input>
-                            <a href="/forgotPassword" class="text-sm/6 font-semibold text-black">Forgot Password?</a>
                         </div>
 
                         <x-form-error name="password" />
