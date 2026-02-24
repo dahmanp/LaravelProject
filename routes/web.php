@@ -60,6 +60,11 @@ Route::delete('/jobs/{job}', [JobController::class, 'destroy'])
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
+//DELETE ACCOUNT SHOW THIS FUTURE ME
+Route::view('/user/delete', 'auth.delete')->middleware('auth');
+Route::delete('/user', [RegisteredUserController::class, 'destroy'])
+    ->middleware('auth');
+
 Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy']);
