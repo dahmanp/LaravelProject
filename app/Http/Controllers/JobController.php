@@ -13,19 +13,6 @@ class JobController extends Controller
 {
     public function index() {
         $jobs = Job::with('employer')->latest()->simplePaginate(3);
-        /*$sort = $request->query('sort', 'id');
-
-        $jobs = Job::with('employer')
-            ->when($sort === 'title', function ($query) {
-                $query->orderBy('title', 'asc');
-            })
-            ->when($sort !== 'title', function ($query) use ($sort) {
-                $query->orderBy($sort);
-            })
-            ->when(!in_array($sort, ['title', 'salary']), function ($query) use ($sort) {
-                $query->orderBy($sort);
-            })
-            ->get();*/
 
         return view('jobs.index', [
             'jobs' => $jobs
